@@ -1,20 +1,37 @@
+
+import { addAlbum } from "../services/api"; 
+
 export default function AlbumCard({ album, onAdd }) {
+    const handleAdd = async () => {
+        await addAlbum({
+            discogsId: album.discogsId,
+            title: album.title,
+            artist: album.artist,
+            year: album.year,
+            thumb: album.thumb,
+            genres: album.genre || [],
+            styles: album.styles || []
+        });
+
+        if (onAdd) onAdd();
+    };
+
     return (
         <div className="album-card">
-            <img src={album.cover_image} alt={album.title} />
+            <img src={album.thumb} alt={album.title} className="album-thumb" />
 
             <div className="album-info">
                 <h3>{album.title}</h3>
                 <p>{album.artist}</p>
                 <p>{album.year}</p>
 
-                {album.genress && (
+                {album.genre && (
                     <p className="genres">
-                        {album.genress.join(", ")}
+                        {album.genre.join(", ")}
                     </p>
                     )}
 
-                <button onClick={() => onAdd(album)}>
+                <button className="add-btn" onClick={handleAdd}>
                     Add to Collection
                 </button>
             </div>

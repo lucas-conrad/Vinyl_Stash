@@ -3,7 +3,7 @@ const axios = require('axios');
 const discogsAPI = axios.create({
     baseURL: 'https://api.discogs.com/',
     headers: {
-        "User-Agent": "VinylStashApp/1.0",
+        "User-Agent": "VinylStashApp/1.0 +http://localhost",
         "Authorization": `Discogs token=${process.env.DISCOGS_TOKEN}`
     }
 });

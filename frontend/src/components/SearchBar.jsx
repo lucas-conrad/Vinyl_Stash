@@ -3,21 +3,22 @@ import { useState } from "react";
 export default function SearchBar({ onSearch }) {
     const [query, setQuery] = useState("");
 
-    const submit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
+        console.log("Search query submitted:", query);
         if (query.trim()) {
             onSearch(query);
         }
     };
     return (
-        <form onSubmit={submit} className="search-bar">
+        <form onSubmit={handleSubmit} className="search-bar-container">
             <input
                 type="text"
                 placeholder="Search for albums or artists..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
             />
-            <button>Search</button>
+            <button type="submit" className="search-btn">Search</button>
         </form>
     );
 }
