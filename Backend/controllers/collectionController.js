@@ -15,6 +15,9 @@ exports.addToCollection = async (req, res) => {
 
     try{
         const existingAlbum = await Album.findOne({ discogsId });
+        if (!req.session.userId) {
+            return res.status(401).json({ eroor: 'Not Logged In' });
+        }
         if (existingAlbum) {
             return res.status(400).json({ message: 'Album already in collection' });
         }
@@ -29,7 +32,7 @@ exports.addToCollection = async (req, res) => {
         });
 
         await newAlbum.save();
-        res.status(201).json({ message: 'Album added to collection', album: newAlbum });
+        res.json({ message: 'Album added to collection', album: newAlbum });
     }
     catch(error){
         console.error('Error adding album to collection:', error);

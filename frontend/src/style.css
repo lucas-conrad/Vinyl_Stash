@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f7f7f7;
+    background-color: #fddcff;
     color: #222;
 }
 
@@ -13,14 +13,14 @@ body {
     background-color: #121212;
     padding: 16px 24px;
     color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex;;
+    align-items: left;
 }
 
 .navbar .logo {
     font-size: 1.5rem;
     font-weight: bold;
+    color: #8f12d2;
 }
 
 .navbar a {
@@ -30,8 +30,14 @@ body {
     font-weight: 500;
 }
 
+.nav-links {
+    margin-left: auto;
+    align-items: left;
+    gap: 15px;
+}
+
 .navbar a:hover {
-    color: white;
+    color: rgb(51, 150, 243);
 }
 
 /* PAGE WRAPPER */
@@ -136,3 +142,94 @@ body {
 .add-button:hover {
     background-color: #333;
 }
+
+.collection-page {
+    background-color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    align-items: top;
+    color: #000000;
+    outline: rebeccapurple;
+    justify-content: center;
+}
+
+.auth-container {
+    max-width: 400px;
+    margin: 60px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+
+.auth-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.auth-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth-container input {
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+}
+
+.auth-container button {
+    padding: 12px;
+    background-color: #121212;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.auth-container button:hover {
+    background-color: #333;
+}
+
+.auth-link {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.auth-link a {
+    color: #121212;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.auth-link a:hover {
+    text-decoration: underline;
+}
+
+.login-page {
+    background-color: #e0f7fa;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-button {
+    padding: 8px 12px;
+    background-color: #ff5252;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.logout-button:hover {
+    background-color: #c9302c;
+} 
