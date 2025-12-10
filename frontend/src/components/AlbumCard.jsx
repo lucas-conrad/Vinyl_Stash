@@ -9,10 +9,10 @@ export default function AlbumCard({ album, onAdd }) {
             artist: album.artist,
             year: album.year,
             thumb: album.thumb,
-            genres: album.genre || [],
+            genres: album.genres || [],
             styles: album.styles || []
         });
-
+ 
         if (onAdd) onAdd();
     };
 
@@ -25,7 +25,7 @@ export default function AlbumCard({ album, onAdd }) {
                 <p>{album.artist}</p>
                 <p>{album.year}</p>
 
-                {album.genre && (
+                {album.genre?.length > 0 && (
                     <p className="genres">
                         {album.genre.join(", ")}
                     </p>

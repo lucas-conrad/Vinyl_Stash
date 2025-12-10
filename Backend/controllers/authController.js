@@ -34,7 +34,10 @@ exports.login = async (req, res) => {
             return res.status(400).json({ error: 'Invalid username or password' });
         }
 
-        req.session.userId = user._id;
+        req.session.userId = {
+            id: user._id.toString(),
+            username: user.username
+        };
 
         console.log("Session after login:", req.session);
         return res.json({ success: true});
@@ -52,9 +55,16 @@ exports.logout = (req, res) => {
         }
 
         res.clearCookie('connect.sid', {
-            path: '/login',
+            path: '/',
         });
 
         return res.json({ message: 'Logged out successfully' });
     });
+};
+
+exports.session = (req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).json({ loggedIn: false });
+    }
+    res.json({ loggedIn: true, userId: req.session.userId });
 };

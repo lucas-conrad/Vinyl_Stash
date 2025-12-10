@@ -24,14 +24,20 @@ export default function Home() {
     }, [navigate]);
 
     const handleSearch = async (query) => {
-        const res = await fetch (`${API_BASE_URL}/search?q=${query}`);
+        const res = await fetch (`${API_BASE_URL}/api/search?q=${query}`);
         const data = await searchDiscogs(query);
         setResults(data);
     };
 
     const handleAdd = async (album) => {
-        await addAlbum(album);
-        alert("Album added to your collection!");
+        const res = await addAlbum(album);
+        if(res.error){
+            alert(res.error);
+        }
+        else
+        {
+            alert("Album added to collection!");
+        }
     };
 
     return (

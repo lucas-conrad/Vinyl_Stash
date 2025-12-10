@@ -3,12 +3,9 @@ const cors = require('cors');
 require('dotenv').config();
 const connectDB = require('./config/db');
 const session = require('express-session');
-const MongoDBStore = require('connect-mongodb-session')(session);
-
+const MongoStore = require('connect-mongo');
 
 const app = express();
-
-
 
 app.use(cors({
     origin: process.env.CLIENT_ORIGIN,
@@ -22,22 +19,16 @@ app.use((req, res, next) => {
     next();
 });
 
-const store = new MongoDBStore({
-    uri: process.env.MONGODB_URI,
-    collection: 'sessions'
-});
-
-store.on('error', function(error) {
-    console.log(error);
-});
-
 app.use(express.json());   
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false, httpOnly: true, maxAge: 1000 * 60 * 60 * 24 },
-    store: store
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI,
+        collectionName: 'sessions'
+    }),
+    cookie: { secure: false, httpOnly: true, maxAge: 1000 * 60 * 60 * 24 }
 }));
 
 
