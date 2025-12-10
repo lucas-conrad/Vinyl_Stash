@@ -149,11 +149,8 @@ body {
 .collection-page {
     background-color: #ffffff;
     min-height: 100vh;
-    display: flex;
-    align-items: top;
     color: #000000;
-    outline: rebeccapurple;
-    justify-content: center;
+    padding: 20px;
 }
 
 .auth-container {
@@ -212,6 +209,56 @@ body {
 
 .auth-link a:hover {
     text-decoration: underline;
+}
+
+.auth-page {
+  min-height: 100vh;
+  background: #f8f4ec;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-card {
+  background: white;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.auth-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.auth-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.auth-btn:hover {
+  background: #333;
+}
+
+.auth-switch {
+  margin-top: 1rem;
 }
 
 .login-page {

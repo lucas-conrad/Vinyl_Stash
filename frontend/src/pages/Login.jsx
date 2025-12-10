@@ -15,6 +15,10 @@ export default function Login() {
         verify();
     }, []);
 
+    const handleChange = (e) => {
+        setForm({ ...form, [e.target.name]: e.target.value });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
@@ -30,24 +34,36 @@ export default function Login() {
     };
 
     return (
-        <div className="login-page">
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit} className="login-form">
-                <input
-                    type="text"
-                    placeholder="Username"
-                    onChange={(e) => setForm({ ...form, username: e.target.value })}
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    onChange={(e) => setForm({ ...form, password: e.target.value })}
-                />
-                <button className="login-btn" type="submit">Login</button>
-            </form>
-            <p>
-                Don't have an account? <Link to="/register">Register here</Link>
-            </p>
-        </div>
-    );
+    <div className="auth-page">
+      <div className="auth-card">
+        <h2 className="auth-title">Login</h2>
+
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <input
+            name="username"
+            placeholder="Username"
+            value={form.username}
+            onChange={handleChange}
+            required
+          />
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
+
+          <button type="submit" className="auth-btn">Login</button>
+        </form>
+
+        <p className="auth-switch">
+          Don’t have an account?{" "}
+          <Link to="/register">Register here</Link>
+        </p>
+      </div>
+    </div>
+  );
 }
