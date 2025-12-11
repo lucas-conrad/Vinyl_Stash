@@ -2,7 +2,7 @@ const Album = require('../models/Album');
 
 exports.getCollection = async (req, res) => {
     try {
-        const userId = req.session.userId?.id || req.session.userId;
+        const userId = req.session.userId;
         if (!userId) {
             return res.status(401).json({ error: 'Not Logged In' });
         }
@@ -18,17 +18,16 @@ exports.addToCollection = async (req, res) => {
     const { discogsId, title, artist, year, thumb, genres, styles } = req.body;
 
     try{
-        const existingAlbum = await Album.findOne({ 
-            discogsId,
-            user: req.session.userId?.id    
-         });
-        if (!req.session.userId) {
-            return res.status(401).json({ error: 'Not Logged In' });
+        const userId = req.session.userId;
+        if (!userId) {
+            return res.status(401).json({ message: 'Not Logged In' });
         }
+        const existingAlbum = await Album.findOne({ user: userId, discogsId });
+
+
         if (existingAlbum) {
             return res.status(400).json({ message: 'Album already in collection' });
         }
-        const userId = req.session.userId?.id || req.session.userId;
         const newAlbum = new Album({
             user: userId,
             discogsId,
@@ -36,8 +35,8 @@ exports.addToCollection = async (req, res) => {
             artist,
             year,
             thumb,
-            genres,
-            styles
+            genres: genres,
+            styles: styles
         });
 
         const savedAlbum = await newAlbum.save();
@@ -51,7 +50,7 @@ exports.addToCollection = async (req, res) => {
 
 exports.removeFromCollection = async (req, res) => {
     try{
-        const userId = req.session.userId?.id;
+        const userId = req.session.userId;
         if (!userId) {
             return res.status(401).json({ message: 'Not Logged In' });
         }

@@ -13,7 +13,7 @@ exports.register = async (req, res) => {
         const newUser = new User({ username, password: hashedPassword });
         await newUser.save();
 
-        req.session.userId = newUser._id;
+        req.session.userId = newUser._id.toString();
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
         console.error('Error during registration:', error);
@@ -34,10 +34,8 @@ exports.login = async (req, res) => {
             return res.status(400).json({ error: 'Invalid username or password' });
         }
 
-        req.session.userId = {
-            id: user._id.toString(),
-            username: user.username
-        };
+        req.session.userId = user._id.toString(),
+  
 
         console.log("Session after login:", req.session);
         return res.json({ success: true});
@@ -54,10 +52,7 @@ exports.logout = (req, res) => {
             return res.status(500).json({ error: 'Logout Failed' });
         }
 
-        res.clearCookie('connect.sid', {
-            path: '/',
-        });
-
+        res.clearCookie('connect.sid', { path: '/',});
         return res.json({ message: 'Logged out successfully' });
     });
 };
