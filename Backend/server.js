@@ -7,6 +7,10 @@ const MongoStore = require('connect-mongo');
 
 const app = express();
 
+app.get('/', (req, res) => {
+    res.send('Vinyl Stash Backend is running');
+});
+
 app.use(cors({
     origin: process.env.CLIENT_ORIGIN,
     methods: ['GET', 'POST', 'DELETE', 'PUT'],
