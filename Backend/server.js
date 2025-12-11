@@ -8,16 +8,11 @@ const MongoStore = require('connect-mongo');
 const app = express();
 
 app.use(cors({
-    origin: ["https://vinyl-stash.netlify.app", "hhtps://www.vinyl-stash.netlify.app/"],
+    origin: "https://vinyl-stash.netlify.app",
     methods: ['GET', 'POST', 'DELETE', 'PUT'],
     credentials: true,
     allowedHeaders: ['Content-Type']
 }));
-
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Credentials', 'true');
-    next();
-});
 
 app.use(express.json());   
 app.use(session({
