@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../services/api";
 
 export default function Register() {
     const [form, setForm] = useState({ username: "", password: "" });
+    const Navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -14,7 +15,11 @@ export default function Register() {
         });
         const data = await res.json();
         console.log("Registration response:", data);
-        Navigate("/")
+        if (!data.error) {
+            Navigate("/");
+        } else {
+            alert(`Registration failed: ${data.error}`);
+        }
     };
 
     return (

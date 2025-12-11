@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
 import { API_BASE_URL, checkSession } from '../services/api';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Login() {
     const [form, setForm] = useState({ username: '', password: '' });
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function verify() {
             const session = await checkSession();
             if (session.loggedIn) {
-                window.location.href = '/';
+                navigate('/');
             }
         }
         verify();
-    }, []);
+    }, [navigate]);
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -29,7 +30,9 @@ export default function Login() {
         });
         const data = await res.json();
         if (data.success) {
-            window.location.href = '/';
+            navigate('/');
+        } else {
+            alert(`Login failed: ${data.error}`);
         }
     };
 
