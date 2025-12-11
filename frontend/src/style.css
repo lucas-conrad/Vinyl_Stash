@@ -215,6 +215,7 @@ body {
   min-height: 100vh;
   background: linear-gradient(rgba(131, 58, 180, 1) 0%, rgb(95, 165, 218) 90%, rgb(140, 134, 250) 100%);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -261,7 +262,6 @@ body {
   font-size: 3rem;
   color: rgb(82, 0, 149);
   margin-bottom: 2rem;
-  border-color: #ffffff;
 }
 
 .auth-switch {
