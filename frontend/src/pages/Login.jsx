@@ -38,6 +38,7 @@ export default function Login() {
 
     return (
     <div className="auth-page">
+      <h1 className="auth-header">Vinyl Stash</h1>
       <div className="auth-card">
         <h2 className="auth-title">Login</h2>
 

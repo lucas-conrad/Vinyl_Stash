@@ -192,7 +192,7 @@ body {
 }
 
 .auth-container button:hover {
-    background-color: #333;
+    background-color: #07cd11;
 }
 
 .auth-link {
@@ -255,6 +255,13 @@ body {
 
 .auth-btn:hover {
   background: #333;
+}
+
+.auth-header {
+  font-size: 3rem;
+  color: rgb(82, 0, 149);
+  margin-bottom: 2rem;
+  border-color: #ffffff;
 }
 
 .auth-switch {
