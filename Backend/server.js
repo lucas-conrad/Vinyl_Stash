@@ -7,12 +7,8 @@ const MongoStore = require('connect-mongo');
 
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send('Vinyl Stash Backend is running');
-});
-
 app.use(cors({
-    origin: process.env.CLIENT_ORIGIN,
+    origin: "https://vinyl-stash.netlify.app",
     methods: ['GET', 'POST', 'DELETE', 'PUT'],
     credentials: true,
     allowedHeaders: ['Content-Type']
@@ -32,9 +28,12 @@ app.use(session({
         mongoUrl: process.env.MONGODB_URI,
         collectionName: 'sessions'
     }),
-    cookie: { secure: false, httpOnly: true, maxAge: 1000 * 60 * 60 * 24 }
+    cookie: { secure: true, httpOnly: true, sameSite: "none", maxAge: 1000 * 60 * 60 * 24 }
 }));
 
+app.get('/', (req, res) => {
+    res.send('Vinyl Stash Backend is running');
+});
 
 //routes
 app.use('/api/album', require('./routes/album'));
