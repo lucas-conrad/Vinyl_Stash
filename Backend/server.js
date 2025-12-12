@@ -14,7 +14,10 @@ app.use(cors({
     allowedHeaders: ['Content-Type']
 }));
 
-app.use(express.json());   
+app.use(express.json()); 
+
+app.set('trust proxy', 1); 
+
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -28,7 +31,7 @@ app.use(session({
         httpOnly: true, 
         sameSite: "none", 
         partitioned: true,
-        maxAge: 1000 * 60 * 60 * 24 }
+        maxAge: 1000 * 60 * 60 * 24 },
 }));
 
 app.get('/', (req, res) => {
