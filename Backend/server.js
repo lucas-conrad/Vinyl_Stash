@@ -23,7 +23,12 @@ app.use(session({
         mongoUrl: process.env.MONGODB_URI,
         collectionName: 'sessions'
     }),
-    cookie: { secure: true, httpOnly: true, sameSite: "none", maxAge: 1000 * 60 * 60 * 24 }
+    cookie: { 
+        secure: true, 
+        httpOnly: true, 
+        sameSite: "none", 
+        partitioned: true,
+        maxAge: 1000 * 60 * 60 * 24 }
 }));
 
 app.get('/', (req, res) => {
