@@ -9,7 +9,6 @@ import { searchDiscogs, addAlbum } from "../services/api.js";
 import {API_BASE_URL} from "../services/api.js";
 
 export default function Home() {
-    const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
     const navigate = useNavigate();
 
@@ -24,7 +23,6 @@ export default function Home() {
     }, [navigate]);
 
     const handleSearch = async (query) => {
-        const res = await fetch (`${API_BASE_URL}/api/search?q=${query}`);
         const data = await searchDiscogs(query);
         setResults(data);
     };
